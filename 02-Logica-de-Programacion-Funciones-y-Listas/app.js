@@ -13,13 +13,23 @@ function intentoDeUsuario(){
 }
 
 function verificarIntento(){
-    let numeroDeUsuario = document.getElementById('valorUsuario').value;
-    console.log(typeof(numeroDeUsuario));
-    console.log(numeroSecreto);
-    console.log(typeof(numeroSecreto));
-    console.log(numeroDeUsuario);
-    console.log(numeroDeUsuario === numeroSecreto);
+    let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
+    
+    if(numeroDeUsuario === numeroSecreto){
+        asignarTextoElemento('p', `Acertaste el número en ${intentos} ${intentos === 1} ? 'intento' : 'intentos'`);
+    } else {
+        if(numeroDeUsuario > numeroSecreto){
+            asignarTextoElemento('p', 'El número secreto es menor');
+        } else{
+            asignarTextoElemento('p', 'El número secreto es mayor');
+        }
+        intentos++;
+    }
     return;
+}
+
+function limpiarCaja(){
+    document.querySelector('#valorUsuario').valorCaja.value = '';
 }
 
 function generarNumeroSecreto(){
